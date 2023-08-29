@@ -1,0 +1,89 @@
+45  minikube start --driver=docker
+46  kubectl get po -A
+47  minikube dashboard
+52  kubectl expose pod podinfo --port=3030 --type=NodePort
+53  kubectl get services
+54  minikube service --url podinfo
+55  kubectl create deployment balanced --image=kicbase/echo-server:1.0
+56  kubectl expose deployment balanced --type=LoadBalancer --port=8080
+57  minikube tunnel
+58  kubectl run podinfo --restart=Never --image=stefanprodan/podinfo:latest --port=3030
+61  kubectl get services
+62  kubectl expose pod podinfo2 --port=5000 --type=NodePort
+63  kubectl get services
+65  minikube service --url podinfo2
+66  kubectl get services balanced
+74  kubectl get pods
+75  kubectl get services
+76  kubectl config get-contexts
+77  kubectl get all
+83  kubectl get deployments
+84  kubectl run nginx --image=nginx:latest
+86  kubectl get deployment
+90  kubectl describe pod nginx
+93  kubectl get nodes
+96  kubectl delete pod podinfo
+97  kubectl run nginx1 --image=nginx --dry-run=client -o yaml > pod-spec.yaml
+107  minikube start --driver=docker
+108  kubectl cluster-info
+115  kubectl delete pod nginx
+117  kubectl get all
+118  kubectl create -f nginx-deployment.yaml
+119  kubectl get pod
+120  kubectl describe pod nginx-55f598f8d-hq5kj
+121  kubectl create -f nginx-svc.yaml
+122  kubectl get all
+123  kubectl get deployment
+125  kubectl get po nginx-55f598f8d-hq5kj -o wide
+126  kubectl get svc
+128  kubectl get po nginx-55f598f8d-hq5kj -o wide
+129  kubectl describe pod nginx-55f598f8d-hq5kj
+130  kubectl get deployment nginx  -o yaml > pod1-spec.yaml
+134  minikube start --driver=docker
+136  kubectl get ns
+141  kubectl create cm aiops --from-literal=name=prakhar --from-literal=rel=baba
+142  kubectl get cm
+143  kubectl alias k get po
+144  kubectl create cm aiops --from-literal=name=prakhar --from-literal=rel=baba
+145  kubectl get cm aiops
+146  kubectl describe cm aiops
+147  kubectl get cm aiops -o yaml > cm-aiops.yaml
+155  kubetl get po
+159  kubectl delete pod load-generator
+161  kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+164  kubectl get hpa php-apache
+166  kubectl get hpa php-apache
+167  kubectl get hpa php-apache --watch
+169  kubectl get pod php-apache-5bdbb8dbf8-44hh6 -o yaml > php-hpa.yaml
+174  kubectl delete pod podinfo1
+175  kubectl delete pod podinfo2
+176  kubectl get no
+181  kubectl create cm games --from-file=game.properties --from-file=ui.properties
+182  kubectl get cm
+183  cat games
+185  kubectl get cm
+186  kubectl get cm games
+187  kubectl create secret generic db-cred --from-literal=username=prakhar
+188  kubectl get secrets
+190  kubectl describe secret db-cred
+191  kubectl get secret db-cred -o> db-cred.yaml
+192  kubectl get secret db-cred -oyaml > db-cred.yaml
+196  touch hpa-service.yaml
+197  kubectl appyly -f hpa-deployment.yaml
+199  kubectly apply -f hpa-service.yaml
+201  kubectl describe pod php-apache
+203  kubectl get deployments
+204  kubectl get svc
+205  kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+206  kubectl patch deploy metrics-server -n kube-system --type 'json' -p '[{"op": "add","path": "/spec/template/spec/containers/0/args/-","value": "--kubelet-insecure-tls"}]'
+207  kubectl get pods -n kube-system -l k8s-app=metrics-server
+208  kubectl get pods -n kube-system
+209  kubectl get events
+211  kubect get hpa
+214  kubectl delete hpa php-apache
+215  kubectl autoscale deployment php-apache
+224  kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+227  kubectl describe hpa php-apache
+231  kubectl get hpa -w
+
+
